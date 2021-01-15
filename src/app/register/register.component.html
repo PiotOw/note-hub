@@ -1,0 +1,32 @@
+<div class="form-wrapper">
+	<button mat-raised-button (click)="goToLogin()" class="back-button">
+		<span class="material-icons">arrow_back</span>
+		Login
+	</button>
+	<div class="register-form">
+		<div class="form-title">
+			Register
+		</div>
+		<form [formGroup]="registerForm" (submit)="register()">
+			<mat-form-field>
+				<input matInput [formControlName]="'username'" placeholder="Username" type="text"
+					   required>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput [formControlName]="'email'" placeholder="Username" type="email"
+					   required>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput [formControlName]="'password'" placeholder="Password" type="password" minlength="1"
+					   required>
+			</mat-form-field>
+			<div class="entropy-wrapper">
+				<div class="entropy" [ngClass]="getDivClass()" *ngIf="getPasswordStrength()">
+					{{getPasswordStrength().toString()}}
+					<div class="entropy-meter"></div>
+				</div>
+			</div>
+			<button mat-raised-button type="submit">Register</button>
+		</form>
+	</div>
+</div>

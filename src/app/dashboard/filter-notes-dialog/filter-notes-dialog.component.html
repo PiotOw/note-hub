@@ -1,0 +1,17 @@
+<div class="content">
+	<div class="header">Choose Filters:</div>
+	<div class="filters">
+		<div class="filter">
+			<mat-checkbox class="example-margin" [(ngModel)]="notePrivate">Private</mat-checkbox>
+		</div>
+		<div class="filter">
+			<mat-checkbox class="example-margin" [(ngModel)]="notePublic">Public</mat-checkbox>
+		</div>
+		<div class="filter">
+			<mat-checkbox class="example-margin" [(ngModel)]="noteProtected">Protected</mat-checkbox>
+		</div>
+	</div>
+	<div class="button">
+		<button mat-stroked-button (click)="close()">OK!</button>
+	</div>
+</div>

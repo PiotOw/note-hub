@@ -1,0 +1,30 @@
+<div class="content">
+	<div class="header">Add note:</div>
+	<form [formGroup]="noteForm" (submit)="addNote()">
+		<mat-form-field>
+			<input matInput [formControlName]="'title'" placeholder="Title" type="text"
+				   required>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput [formControlName]="'content'" placeholder="Content..." required>
+		</mat-form-field>
+	</form>
+	<div class="type">
+		<mat-radio-group
+			[(ngModel)]="noteType">
+			<mat-radio-button *ngFor="let type of TYPES" [value]="type">
+				{{type.toLowerCase()}}
+			</mat-radio-button>
+		</mat-radio-group>
+	</div>
+	<form [formGroup]="notePasswordForm" *ngIf="noteType === NoteTypeEnum.PROTECTED">
+		<mat-form-field>
+			<input matInput [formControlName]="'password'" placeholder="Password..."
+				   required>
+		</mat-form-field>
+	</form>
+	<div class="buttons">
+		<button mat-stroked-button (click)="close()">Cancel</button>
+		<button mat-raised-button class="add-button" (click)="addNote()">Add note</button>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<div class="content">
+	<button mat-raised-button class="logout-button" (click)="logout()">Logout</button>
+	<div class="list mat-elevation-z6">
+		<div class="list-header">
+			<div class="list-title">
+				Notes
+			</div>
+			<div class="list-actions">
+				<button mat-raised-button class="add-button accent-button" (click)="addNote()">Add</button>
+				<button mat-stroked-button (click)="filterNotes()">Filter</button>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="list-content" *ngIf="NOTES">
+			<div class="list-entry mat-elevation-z2" *ngFor="let note of NOTES">
+				<div class="list-entry-header">
+					<div class="note-title">{{note.title}}</div>
+					<div class="note-actions">
+						<button mat-stroked-button class="decrypt-button" *ngIf="note.type === NoteTypeEnum.PROTECTED"
+								(click)="decryptNote(note)">Decrypt
+						</button>
+						<span class="note-public-label" *ngIf="note.type === NoteTypeEnum.PUBLIC">Public</span>
+					</div>
+				</div>
+				<div class="list-entry-content">
+					{{note.content}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="list mat-elevation-z6">
+		<div class="list-header">
+			<div class="list-title">
+				Files
+			</div>
+			<div class="list-actions">
+				<input hidden type="file" #fileInput (change)="fileChange($event)">
+				<button mat-raised-button class="accent-button" (click)="fileInput.click()">Upload</button>
+			</div>
+		</div>
+		<div class="divider"></div>
+		<div class="list-content" *ngIf="FILES">
+			<div class="list-entry mat-elevation-z2" *ngFor="let file of FILES">
+				<div class="list-entry-header">
+					<div class="note-title">{{file.fileName}}</div>
+					<div class="note-actions">
+						<button mat-stroked-button class="decrypt-button" (click)="downloadFile(file)">Download</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

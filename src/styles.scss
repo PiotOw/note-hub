@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import "theme";
+
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	min-height: 100vh;
+	min-width: 100vw;
+	color: #dcdcdc;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Roboto Condensed", sans-serif;
+}

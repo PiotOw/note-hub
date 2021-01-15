@@ -1,0 +1,110 @@
+@import 'src/variables';
+
+.content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	padding-top: 16px;
+
+	.logout-button {
+		background: $medium-dark-gray;
+		position: absolute;
+		top: 20px;
+		right: 50px;
+		height: 40px;
+	}
+
+	.list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
+		width: 45%;
+		background: $dark-gray-hover;
+
+		.list-header {
+			width: 100%;
+			padding: 0 46px;
+			margin: 24px 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			.list-title {
+				font-size: 24px;
+				font-weight: 500;
+			}
+
+			.list-actions {
+				button {
+					width: 75px;
+
+					&.add-button {
+						margin-right: 16px;
+					}
+
+					&.accent-button {
+						background: $medium-dark-gray;
+					}
+				}
+			}
+		}
+
+		.divider {
+			width: 85%;
+			height: 2px;
+			background: rgba(black, .1);
+		}
+
+		.list-content {
+			width: 100%;
+			height: 100%;
+			overflow: scroll;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			padding: 12px;
+
+			.list-entry {
+				width: 100%;
+				border-radius: 8px;
+				border: 2px rgba($medium-dark-gray, .5) solid;
+
+				&:not(:last-child) {
+					margin-bottom: 16px;
+				}
+
+				.list-entry-header {
+					font-size: 18px;
+					font-weight: 500;
+					width: 100%;
+					padding: 12px 32px 12px 12px;
+					background: $dark-gray;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+
+					.note-public-label {
+						font-size: 14px;
+						font-weight: 300;
+						letter-spacing: 1.5px;
+					}
+				}
+
+				.list-entry-content {
+					font-size: 16px;
+					overflow-wrap: break-word;
+				}
+
+				.list-entry-content {
+					padding: 12px;
+				}
+			}
+		}
+	}
+}

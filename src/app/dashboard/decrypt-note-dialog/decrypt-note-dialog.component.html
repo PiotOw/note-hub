@@ -1,0 +1,12 @@
+<div class="content" *ngIf="note">
+	<div class="header">{{note.title}}:</div>
+	<form [formGroup]="notePasswordForm">
+		<mat-form-field>
+			<input matInput [formControlName]="'password'" placeholder="Password...">
+		</mat-form-field>
+	</form>
+	<div class="note-content">{{decrypted}}</div>
+	<div class="button">
+		<button mat-raised-button class="close-button" (click)="close()">I've seen enough</button>
+	</div>
+</div>

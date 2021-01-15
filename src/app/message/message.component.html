@@ -1,0 +1,13 @@
+<div *ngIf="!showSpinner">
+	<mat-dialog-content>
+		<p>{{message}}</p>
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<button mat-stroked-button (click)="close()">Close</button>
+	</mat-dialog-actions>
+</div>
+<div *ngIf="showSpinner" class="spinner">
+	<mat-dialog-content>
+		<mat-spinner></mat-spinner>
+	</mat-dialog-content>
+</div>

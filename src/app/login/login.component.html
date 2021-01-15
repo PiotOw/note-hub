@@ -1,0 +1,22 @@
+<div class="login-wrapper">
+	<div class="login-form">
+		<div class="form-title">
+			login
+		</div>
+		<form [formGroup]="loginForm" (submit)="login()">
+			<mat-form-field>
+				<input matInput [formControlName]="'username'" placeholder="Username" type="text"
+					   required>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput [formControlName]="'password'" placeholder="Password" type="password" minlength="1"
+					   required>
+			</mat-form-field>
+			<div class="button-wrapper">
+				<button mat-raised-button type="submit">Login</button>
+				<span>OR</span>
+				<button mat-raised-button (click)="register()">Register</button>
+			</div>
+		</form>
+	</div>
+</div>
