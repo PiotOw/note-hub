@@ -11,6 +11,8 @@ import * as FileSaver from 'file-saver';
 import {FileService} from '../file/file.service';
 import {NoteService} from '../note/note.service';
 import {LoginService} from '../auth/login.service';
+import {Router} from '@angular/router';
+import {MessageComponent} from '../message/message.component';
 
 declare var require: any;
 
@@ -35,14 +37,23 @@ export class DashboardComponent implements OnInit {
 	constructor(private dialog: MatDialog,
 				private fileService: FileService,
 				private noteService: NoteService,
-				private loginService: LoginService) {
+				private loginService: LoginService,
+				private router: Router) {
 	}
 
 	ngOnInit(): void {
+		this.fetchNotes();
+
+		this.fetchFiles();
+	}
+
+	fetchNotes() {
 		this.noteService.fetchAllNotes().subscribe(res => {
 			this.NOTES = res;
 		});
+	}
 
+	fetchFiles() {
 		this.fileService.fetchAllFiles().subscribe(res => {
 			this.FILES = res;
 		})
@@ -78,7 +89,9 @@ export class DashboardComponent implements OnInit {
 					content: result.content,
 					type: result.noteType
 				}
-				this.NOTES.push(newNote);
+				this.noteService.postNote(newNote).subscribe(res => {
+					this.fetchNotes();
+				})
 			}
 		})
 	}
@@ -89,23 +102,32 @@ export class DashboardComponent implements OnInit {
 	}
 
 	downloadFile(file: FileModel) {
-		const data = new Blob([file.content], {type: 'application/octet-stream'});
+		const data = new Blob([file.savedContent], {type: 'application/octet-stream'});
 		FileSaver.saveAs(data, file.fileName);
 	}
 
 	fileChange(event) {
 		if (event.target.files.length > 0) {
-			const selectedFile: File = event.target.files[0];
-			const data: FileModel = {
-				fileName: selectedFile.name,
-				fileType: selectedFile.type,
-				content: new Blob([selectedFile], {type: selectedFile.type})
-			}
-			this.downloadFile(data);
+			// const selectedFile: File = event.target.files[0];
+			// const x: Blob = new Blob([selectedFile], {type: selectedFile.type});
+			// x.arrayBuffer().then(array => {
+			// 	const byteArray = new Uint8Array(array);
+			// 	const data: FileModel = {
+			// 		fileName: selectedFile.name,
+			// 		fileType: selectedFile.type,
+			// 		savedContent: '[' + byteArray.toString() + ']'
+			// 	};
+			// 	this.fileService.uploadFile(data).subscribe(res => {
+			// 		this.fetchFiles();
+			// 	})
+			// });
+			const dialogRef = this.dialog.open(MessageComponent);
+			dialogRef.componentInstance.message = 'We are sorry, but this feature couldn\'t have been pulled off in the time of app launch';
 		}
 	}
 
 	logout() {
 		this.loginService.logout();
+		this.router.navigate(['/login']);
 	}
 }

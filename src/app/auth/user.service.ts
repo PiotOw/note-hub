@@ -13,7 +13,7 @@ export class UserService {
 	}
 
 	public registerUser(request): Observable<any> {
-		const link = `${environment.BASE_API_URL}/register`;
+		const link = `${environment.BASE_API_URL}/auth/signup`;
 		const data = {
 			username: request.username,
 			email: request.email,

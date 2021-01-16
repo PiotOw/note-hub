@@ -9,28 +9,12 @@ import {FileModel} from './file.model';
 })
 export class FileService {
 
-// TODO
-	FILES: FileModel[] = [
-		{
-			fileName: 'Plik',
-			fileType: 'mp4',
-			content: null
-		},
-		{
-			fileName: 'Plik',
-			fileType: 'mp4',
-			content: null
-		}
-	]
-
-
 	constructor(private http: HttpClient) {
 	}
 
 	fetchAllFiles(): Observable<FileModel[]> {
 		const link = environment.BASE_API_URL + '/files';
-		// return this.http.get<any>(link);
-		return of(this.FILES);
+		return this.http.get<any>(link);
 	}
 
 	uploadFile(data: FileModel): Observable<any> {

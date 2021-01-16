@@ -27,10 +27,10 @@ export class LoginService {
 	}
 
 	public login(loginRequest: AuthRequest): Observable<any> {
-		const link: string = `${environment.BASE_API_URL}/token/`;
-		return this.httpClient.post<{ refresh: string, access: string }>(link, loginRequest).pipe(
+		const link: string = `${environment.BASE_API_URL}/auth/signin`;
+		return this.httpClient.post<{accessToken: string }>(link, loginRequest).pipe(
 			map(res => {
-				localStorage.setItem(LoginService.localStorageJWTKey, res.access);
+				localStorage.setItem(LoginService.localStorageJWTKey, res.accessToken);
 			})
 		);
 	}

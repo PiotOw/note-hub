@@ -39,11 +39,10 @@ export class RegisterComponent implements OnInit {
 			this.api.registerUser(data).subscribe(res => {
 				dialogRef.componentInstance.showSpinner = false;
 				dialogRef.componentInstance.message = 'Registered successfully!';
-
-				console.log(res)
+				this.router.navigate(['/login']);
 			}, error => {
 				dialogRef.componentInstance.showSpinner = false;
-				dialogRef.componentInstance.message = 'Error, try again!';
+				dialogRef.componentInstance.message = error.error.message;
 			})
 		} else {
 			dialogRef.componentInstance.showSpinner = false;
